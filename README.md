@@ -2,7 +2,7 @@
 
 ## Sony Jufri
 
-<b>Abstract:</b> This app is used to help you find injury (TOOCS) coding, occupation coding and industry coding for lodging worker's compensation injury/accident sustained by your employee at work. You can use the streamlit app to enter your injury scenario and obtained the proper injury coding for your situation.
+<b>Abstract:</b> This app is used to help you find injury (TOOCS) coding, occupation coding and industry coding for lodging worker's compensation injury/accident. You can use the streamlit app to enter your injury scenario and obtained the proper injury coding for your situation.
 
 ## Injury Coding App
 You can access the app here: [Injury Coding](https://injurycoding.streamlit.app/)
