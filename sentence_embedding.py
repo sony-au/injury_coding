@@ -5,16 +5,19 @@ Created on Thu Aug  8 07:56:54 2024
 @author: sjufri
 """
 
-from transformers import AutoTokenizer, AutoModel
 import torch
 import torch.nn.functional as F
 import numpy as np
 
 # function to create embeddings
-def create_embedding(text):
+def create_embedding(text, 
+                     tokenizer, 
+                     model):
     '''
     This is function to create sentence embedding from a text
     text: the text to be converted into embedding
+    tokenizer: the tokenizer of the LLM model
+    model: the LLM model used
     '''
     # Tokenize sentences
     encoded_input = tokenizer(text, padding=True, truncation=True, return_tensors='pt')
@@ -51,15 +54,13 @@ def calculate_cosine(embedding_1,embedding_2):
     
     return cosine_similarity
 
-#Mean Pooling - Take attention mask into account for correct averaging
+
 def mean_pooling(model_output, attention_mask):
+    '''
+    The Mean Pooling is to take attention mask into account for correct averaging
+    model_output: the model output
+    attention_mask: the attention mask
+    '''
     token_embeddings = model_output[0] #First element of model_output contains all token embeddings
     input_mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
     return torch.sum(token_embeddings * input_mask_expanded, 1) / torch.clamp(input_mask_expanded.sum(1), min=1e-9)
-
-### LOAD MODEL ###
-model_name='./model/sentence-transformers-all-MiniLM-L6-v2/'
-
-# Load model from HuggingFace Hub
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModel.from_pretrained(model_name)
