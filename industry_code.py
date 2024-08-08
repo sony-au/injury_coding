@@ -11,15 +11,11 @@ import pickle
 from sentence_embedding import create_embedding, calculate_cosine
 
 def find_industry_code(user_input,
-                       n,
-                       tokenizer, 
-                       model):
+                       n=15):
     '''
     This is function to obtain the ANZSIC Industry Code for an occupation
     user_input: the industry you are searching for
     n: the top n coding you wish to display
-    tokenizer: the tokenizer of the LLM model
-    model: the LLM model used
     '''
     # industry data
     industry_df=pd.read_excel('./dataset/anzsic_2006_complete.xlsx')
@@ -34,7 +30,7 @@ def find_industry_code(user_input,
     industry_df['Embedding']=[embedding for embedding in ind_embeddings]
     
     # create embedding and calculate cosine similarity
-    scenario_embedding=create_embedding(user_input, tokenizer, model)
+    scenario_embedding=create_embedding(user_input)
     cosine_sims=[]
     for embedding in industry_df['Embedding']:
         cosine_sim=calculate_cosine(scenario_embedding,embedding)

@@ -5,21 +5,18 @@ Created on Thu Aug  8 08:07:05 2024
 @author: sjufri
 """
 
+import streamlit as st
 import pandas as pd
 import pickle
 
 from sentence_embedding import create_embedding, calculate_cosine
 
 def find_occupation_code(user_input,
-                         n, 
-                         tokenizer, 
-                         model):
+                         n=15):
     '''
     This is function to obtain the ANZSCO Occupation Code for an occupation
     user_input: the occupation you are searching for
     n: the top n coding you wish to display
-    tokenizer: the tokenizer of the LLM model
-    model: the LLM model used
     '''
     # occupation data
     occ_df=pd.read_excel('./dataset/anzsco_2022_structure_062023_complete.xlsx')
@@ -34,7 +31,7 @@ def find_occupation_code(user_input,
     occ_df['Embedding']=[embedding for embedding in occ_embeddings]
 
     # create embedding and calculate cosine similarity
-    scenario_embedding=create_embedding(user_input, tokenizer, model)
+    scenario_embedding=create_embedding(user_input)
     cosine_sims=[]
     for embedding in occ_df['Embedding']:
         cosine_sim=calculate_cosine(scenario_embedding,embedding)

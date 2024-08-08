@@ -11,7 +11,7 @@ import pickle
 from sentence_embedding import calculate_cosine
 
 def nature_injury_code(scenario_embedding,
-                       n):
+                       n=15):
     '''
     This is function to obtain the TOOCS nature of injury code for an accident/injury
     scenario_input: the sentence embedding for the accident scenario and the resulting injury
@@ -37,12 +37,12 @@ def nature_injury_code(scenario_embedding,
         cosine_sims.append(cosine_sim)
     
     nature_df['CosineSimilarity']=cosine_sims
-    sorted_nature_df=nature_df.sort_values(by=['CosineSimilarity'], ascending=False).head(n)
+    sorted_nature_df=nature_df.sort_values(by=['CosineSimilarity'], ascending=False).head(15)
     
     return sorted_nature_df.loc[:,['Code','BodilyLocation','Description']]
 
 def body_injury_code(scenario_embedding,
-                     n):
+                     n=15):
     '''
     This is function to obtain the TOOCS body location of injury code for an accident/injury
     scenario_embedding: the sentence embedding for the accident scenario and the resulting injury
@@ -69,7 +69,7 @@ def body_injury_code(scenario_embedding,
     return sorted_body_df.loc[:,['Code','BodyPart','Description']]
 
 def mechanism_injury_code(scenario_embedding,
-                          n):
+                          n=15):
     '''
     This is function to obtain the TOOCS mechanism of injury code for an accident/injury
     scenario_embedding: the sentence embedding for the accident scenario and the resulting injury
@@ -96,7 +96,7 @@ def mechanism_injury_code(scenario_embedding,
     return sorted_mech_df.loc[:,['Code','Mechanism','Description']]
 
 def agency_injury_code(agency_embedding,
-                       n):
+                       n=15):
     '''
     This is function to obtain the TOOCS agency of injury code for an accident/injury
     agency_embedding: the sentence embedding for the agency of the injury
