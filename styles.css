@@ -1,0 +1,41 @@
+.dataframe-div {
+  max-height: 350px;
+  max-width: 1050px;
+  overflow: auto;
+  position: relative;
+}
+
+.dataframe {
+  font-size: 12px; /* Adjust base font size here */
+}
+
+.dataframe thead th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+  background: #2ca25f;
+  color: white;
+  font-size: 13px; /* Font size for table headers */
+}
+
+.dataframe tbody td, .dataframe tbody th {
+  font-size: 13px; /* Font size for table body cells */
+}
+
+.dataframe thead th:first-child {
+  left: 0;
+  z-index: 1;
+}
+
+.dataframe tbody tr th:only-of-type {
+  vertical-align: middle;
+}
+
+.dataframe tbody tr th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  left: 0;
+  background: #99d8c9;
+  color: white;
+  vertical-align: top;
+}

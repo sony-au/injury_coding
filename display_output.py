@@ -9,7 +9,7 @@ import streamlit as st
 from load_css import load_css
 
 # CSS styling 
-css=load_css('./style/styles.css')
+css=load_css('styles.css')
 style=f'<style scoped>{css}</style>'
 
 def display_output(data,
