@@ -41,23 +41,3 @@ def find_occupation_code(user_input,
     sorted_occ_df=occ_df.sort_values(by=['CosineSimilarity'], ascending=False).head(n)
     
     return sorted_occ_df.loc[:,['Code','Occupation','UnitGroup','MinorGroup','SubMajorGroup','MajorGroup']]
-
-def occupation_code(selected_tab):
-    # Use Markdown headers to increase text size
-    st.write("## ANZSCO Occupation Code")
-    
-    # Create a text input field with default value and placeholder
-    user_input=''
-    user_input = st.text_input(
-        '**Enter the occupation you are looking for:**',
-        placeholder="Type your input here...",
-    )
-    
-    # Display the entered text and the DataFrame with adjustable width
-    if user_input!='':
-        ### OCCUPATION CODE ###
-        # get output
-        data=find_occupation_code(user_input)
-        
-        # display output
-        display_output(data,text_output=f"Here are the top 15 occupation code for {user_input}:",margin_top=0)
