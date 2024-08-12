@@ -154,7 +154,7 @@ def icd_code(scenario_embedding,
     #icd_embeddings = torch.load('./dataset/ICDEmbedding.pt')
     icd_embeddings_1 = torch.load('./dataset/ICDEmbedding_part1.pt')
     icd_embeddings_2 = torch.load('./dataset/ICDEmbedding_part2.pt')
-    icd_embeddings=icd_embeddings_1.append(icd_embeddings_2)
+    icd_embeddings=icd_embeddings_1+icd_embeddings_2
     # Load the tensor from the file
     #with open('./dataset/ICDEmbedding.pkl', 'rb') as f:
     #    icd_embeddings = pickle.load(f)
